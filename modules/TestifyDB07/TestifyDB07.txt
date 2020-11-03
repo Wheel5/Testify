@@ -1,0 +1,8 @@
+## Title: |cFFcc00TestifyDB07|r
+## Author: |cc2ff19Wheels|r
+## Description: Database 07 submodule for saved Testify logs
+## DependsOn: Testify
+## ValidateSavedVariables: 1
+## APIVersion: 100032
+## SavedVariables: TestifyDB07SavedVars
+## DisabledSavedVariablesAutoSaving: 1

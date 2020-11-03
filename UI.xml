@@ -1,0 +1,228 @@
+<GuiXml>
+	<Controls>
+
+		<TopLevelControl name="Testify_Frame" clampedToScreen="true" mouseEnabled="true" movable="true" hidden="true" >
+			<Anchor point="TOPLEFT" relativePoint="TOPLEFT" offsetX="400" offsetY="400" />
+			<Dimensions x="700" y="400" />
+			<Controls>
+				<Backdrop name="$(parent)BG" edgeColor="FF000000" centerColor="D0000000" >
+					<Edge edgeSize="1" />
+					<AnchorFill />
+				</Backdrop>
+				<Control name="$(parent)_Title" >
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" offsetX="4" offsetY="4" />
+					<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT" offsetX="-4" offsetY="40" />
+					<Controls>
+						<Line name="$(parent)base" color="FFFFFF" thickness="2" >
+							<Anchor point="BOTTOMLEFT" offsetX="4" />
+							<Anchor point="BOTTOMRIGHT" offsetX="-4" />
+						</Line>
+						<Label name="$(parent)_Text" font="ZoFontHeader4" text="Testify" >
+							<Anchor point="LEFT" relativePoint="LEFT" offsetX="4" />
+						</Label>
+						<Label name="$(parent)_Status" font="ZoFontHeader" text="Placeholder Status Text" >
+							<Anchor point="CENTER" relativePoint="CENTER" />
+						</Label>
+						<Button name="$(parent)_Close" inherits="ZO_CloseButton" >
+							<Anchor point="RIGHT" relativePoint="RIGHT" offsetX="-4" offsetY="-4" />
+						</Button>
+					</Controls>
+				</Control>
+				<Control name="$(parent)_Scenarios" >
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$(parent)_Title" offsetX="4" offsetY="2" />
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="$(parent)_Title" offsetX="-4" offsetY="150" />
+					<Controls>
+						<Line name="$(parent)base" color="FFFFFF" thickness="2" >
+							<Anchor point="BOTTOMLEFT" />
+							<Anchor point="BOTTOMRIGHT" />
+						</Line>
+						<Line name="$(parent)split" color="FFFFFF" thickness="2" >
+							<Anchor point="TOP" offsetY="-2"/>
+							<Anchor point="BOTTOM" />
+						</Line>
+						<Control name="$(parent)_Left" >
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" />
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOM" />
+							<Controls>
+								<Label name="$(parent)_TextLeft" font="ZoFontHeader" text="Scenario Recording" >
+									<Anchor point="TOP" relativePoint="TOP" />
+								</Label>
+								<Control name="$(parent)_Recording_Left" >
+									<Anchor point="TOPLEFT" relativePoint="TOPLEFT" offsetY="18" />
+									<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOM" />
+									<Controls>
+										<Label name="$(parent)_Edit_Title" font="ZoFontGameSmall" text="Scenario Name" >
+											<Anchor point="TOP" />
+										</Label>
+										<Backdrop name="$(parent)_Name_Edit" inherits="ZO_SingleLineEditBackdrop_Keyboard">
+											<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$(parent)_Edit_Title" />
+											<Dimensions x="120" />
+											<Controls>
+												<EditBox name="$(parent)_Box" inherits="ZO_DefaultEditForBackdrop ZO_EditDefaultText" >
+													<Anchor point="LEFT" />
+													<Anchor point="RIGHT" />
+													<OnInitialized>
+														ZO_EditDefaultText_Initialize(self, "Enter Name")
+													</OnInitialized>
+												</EditBox>
+											</Controls>
+										</Backdrop>
+										<Label name="$(parent)_Info" font="ZoFontGameSmall" horizontalAlignment="CENTER" text="test text" >
+											<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$(parent)_Name_Edit" offsetY="5" />
+											<Anchor point="BOTTOM" relativePoint="BOTTOM" />
+											<Dimensions x="120" />
+										</Label>
+									</Controls>
+								</Control>
+								<Control name="$(parent)_Recording_Right" >
+									<Anchor point="TOPLEFT" relativePoint="TOP" offsetY="18" />
+									<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" />
+									<Controls>
+										<Button name="$(parent)_Start_Button" text="Start Recording" inherits="ZO_DefaultButton" >
+											<Anchor point="TOP" relativePoint="TOP" offsetY="15" />
+										</Button>
+										<Button name="$(parent)_Stop_Button" text="Stop Recording" inherits="ZO_DefaultButton" >
+											<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$(parent)_Start_Button" offsetY="5" />
+										</Button>
+										<Label name="$(parent)_Status" font="ZoFontGameSmall" horizontalAlignment="CENTER" text="Recording: |cFF0000Off|r" >
+											<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$(parent)_Stop_Button" offsetY="5" />
+										</Label>
+									</Controls>
+								</Control>
+							</Controls>
+						</Control>
+						<Control name="$(parent)_Right" >
+							<Anchor point="TOPLEFT" relativePoint="TOP" />
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" />
+							<Controls>
+								<Label name="$(parent)_TextRight" font="ZoFontHeader" text="Scenario Management" >
+									<Anchor point="TOP" relativePoint="TOP" />
+								</Label>
+								<Line name="$(parent)_Split" >
+									<Anchor point="TOP" offsetY="25" />
+									<Anchor point="BOTTOM" offsetY="-20" />
+								</Line>
+								<Control name="$(parent)_Management_Left" >
+									<Anchor point="TOPLEFT" relativePoint="TOPLEFT" offsetY="18" />
+									<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOM" />
+									<Controls>
+										<Label name="$(parent)_Mem_Title" font="ZoFontGameSmall" text="Loaded Scenarios" >
+											<Anchor point="TOP" />
+										</Label>
+										<Control name="$(parent)_Mem_Dropdown" inherits="ZO_ScrollableComboBox" mouseEnabled="true" tier="HIGH" >
+											<Dimensions x="150" y="29" />
+											<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$(parent)_Mem_Title" offsetY="5" />
+										</Control>
+										<Button name="$(parent)_Save_Button" text="Save Scenario" inherits="ZO_DefaultButton" >
+											<Anchor point="TOP" relativePoint="Bottom" relativeTo="$(parent)_Mem_Dropdown" offsetY="5" />
+										</Button>
+										<Button name="$(parent)_Mem_Delete_Button" text="Delete" inherits="ZO_DefaultButton" >
+											<Anchor point="TOP" relativePoint="Bottom" relativeTo="$(parent)_Save_Button" offsetY="5" />
+										</Button>
+									</Controls>
+								</Control>
+								<Control name="$(parent)_Management_Right" >
+									<Anchor point="TOPLEFT" relativePoint="TOP" offsetY="18" />
+									<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" />
+									<Controls>
+										<Label name="$(parent)_Disk_Title" font="ZoFontGameSmall" text="Saved Scenarios" >
+											<Anchor point="TOP" />
+										</Label>
+										<Control name="$(parent)_Disk_Dropdown" inherits="ZO_ScrollableComboBox" mouseEnabled="true" tier="HIGH" >
+											<Dimensions x="150" y="29" />
+											<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$(parent)_Disk_Title" offsetY="5" />
+										</Control>
+										<Button name="$(parent)_Load_Button" text="Load Scenario" inherits="ZO_DefaultButton" >
+											<Anchor point="TOP" relativePoint="Bottom" relativeTo="$(parent)_Disk_Dropdown" offsetY="5" />
+										</Button>
+										<Button name="$(parent)_Disk_Delete_Button" text="Delete" inherits="ZO_DefaultButton" >
+											<Anchor point="TOP" relativePoint="Bottom" relativeTo="$(parent)_Load_Button" offsetY="5" />
+										</Button>
+									</Controls>
+								</Control>
+							</Controls>
+						</Control>
+					</Controls>
+				</Control>
+				<Control name="$(parent)_Replay" >
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$(parent)_Scenarios" />
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" offsetX="-8" offsetY="-8" />
+					<Controls>
+						<Line name="$(parent)base" color="FFFFFF" thickness="2" >
+							<Anchor point="BOTTOMLEFT" offsetY="-2" />
+							<Anchor point="BOTTOMRIGHT" offsetY="-2" />
+						</Line>
+						<Label name="$(parent)_Title" font="ZoFontHeader" text="Scenario Replay" >
+							<Anchor point="TOP" relativePoint="TOP" />
+						</Label>
+						<Control name="$(parent)_Left" >
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" />
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOM" />
+							<Controls>
+								<Control name="$(parent)_Left" >
+									<Anchor point="TOPLEFT" relativePoint="TOPLEFT" offsetY="18" />
+									<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOM" />
+									<Controls>
+										<Label name="$(parent)_Scenario_Title" font="ZoFontGameSmall" text="Scenario to Replay" >
+											<Anchor point="TOP" />
+										</Label>
+										<Control name="$(parent)_Scenario_Dropdown" inherits="ZO_ScrollableComboBox" mouseEnabled="true" tier="HIGH" >
+											<Dimensions x="150" y="29" />
+											<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$(parent)_Scenario_Title" offsetY="5" />
+										</Control>
+										<Backdrop name="$(parent)_Start_Frame_Edit" inherits="ZO_SingleLineEditBackdrop_Keyboard">
+											<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$(parent)_Scenario_Dropdown" offsetY="18" />
+											<Dimensions x="120" />
+											<Controls>
+												<EditBox name="$(parent)_Box" inherits="ZO_DefaultEditForBackdrop ZO_EditDefaultText" >
+													<Anchor point="LEFT" />
+													<Anchor point="RIGHT" />
+													<OnInitialized>
+														ZO_EditDefaultText_Initialize(self, "Start Frame (1)")
+													</OnInitialized>
+												</EditBox>
+											</Controls>
+										</Backdrop>
+									</Controls>
+								</Control>
+								<Control name="$(parent)_Right" >
+									<Anchor point="TOPLEFT" relativePoint="TOP" offsetY="18" />
+									<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" />
+									<Controls>
+										<Label name="$(parent)_Manager_Title" font="ZoFontGameSmall" text="Event Manger" >
+											<Anchor point="TOP" />
+										</Label>
+										<Control name="$(parent)_Manager_Dropdown" inherits="ZO_ScrollableComboBox" mouseEnabled="true" tier="HIGH" >
+											<Dimensions x="150" y="29" />
+											<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$(parent)_Manager_Title" offsetY="5" />
+										</Control>
+										<Button name="$(parent)_Play_Button" text="Start Replay" inherits="ZO_DefaultButton" >
+											<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$(parent)_Manager_Dropdown" offsetY="5" />
+										</Button>
+										<Button name="$(parent)_Stop_Button" text="Stop Replay" inherits="ZO_DefaultButton" >
+											<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$(parent)_Play_Button" offsetY="5" />
+										</Button>
+									</Controls>
+								</Control>
+							</Controls>
+						</Control>
+						<Control name="$(parent)_Right" >
+							<Anchor point="TOPLEFT" relativePoint="TOP" />
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" />
+							<Controls>
+								<Label name="$(parent)_Info" font="ZoFontGameMedium" verticalAlignment="CENTER" >
+									<Anchor point="TOPLEFT" relativePoint="TOPLEFT" offsetX="96"/>
+									<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" offsetY="-40" />
+								</Label>
+							</Controls>
+						</Control>
+						<StatusBar name="$(parent)_Progress_Bar" inherits="ZO_DefaultStatusBarBG" >
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" offsetX="8" offsetY="-40" />
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" offsetX="-8" offsetY="-16" />
+						</StatusBar>
+					</Controls>
+				</Control>
+			</Controls>
+		</TopLevelControl>
+	</Controls>
+</GuiXml>

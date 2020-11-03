@@ -1,0 +1,8 @@
+## Title: |cFFcc00TestifyDB04|r
+## Author: |cc2ff19Wheels|r
+## Description: Database 04 submodule for saved Testify logs
+## DependsOn: Testify
+## ValidateSavedVariables: 1
+## APIVersion: 100032
+## SavedVariables: TestifyDB04SavedVars
+## DisabledSavedVariablesAutoSaving: 1
