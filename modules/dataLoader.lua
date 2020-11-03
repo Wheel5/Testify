@@ -35,7 +35,6 @@ local getModule = {
 }
 
 local function attemptModuleRegistration(e, addonName)
-	--df("loading %s", addonName)
 	local mod = getModule[addonName]
 	if not mod then return end
 

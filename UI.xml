@@ -187,13 +187,13 @@
 								</Control>
 								<Control name="$(parent)_Right" >
 									<Anchor point="TOPLEFT" relativePoint="TOP" offsetY="18" />
-									<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" />
+									<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" offsetX="80" />
 									<Controls>
 										<Label name="$(parent)_Manager_Title" font="ZoFontGameSmall" text="Event Manger" >
 											<Anchor point="TOP" />
 										</Label>
 										<Control name="$(parent)_Manager_Dropdown" inherits="ZO_ScrollableComboBox" mouseEnabled="true" tier="HIGH" >
-											<Dimensions x="150" y="29" />
+											<Dimensions x="200" y="29" />
 											<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$(parent)_Manager_Title" offsetY="5" />
 										</Control>
 										<Button name="$(parent)_Play_Button" text="Start Replay" inherits="ZO_DefaultButton" >

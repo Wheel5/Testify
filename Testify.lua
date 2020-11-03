@@ -2,11 +2,7 @@ Testify = Testify or { }
 local te = Testify
 
 te.name = "Testify"
-te.version = "0.1"
-
---local manager = EventCallbackManager:New("GlobalEventManager")
---GetEventManager = function() return manager end
---EVENT_MANAGER = manager
+te.version = "1.0"
 
 te.testReplay_01 = {
 	[1] = {1000, {131106, 2250, nil, "Ranger", 0, 0, nil, 0, "My Slap on One^Fx", 1, 0, -1, 1, nil, 0, 48207, 45493, 0}},
@@ -16,6 +12,7 @@ te.testReplay_01 = {
 }
 
 local chatOutEvent = false
+local modsChecked = false
 
 local defaults = {
 }
@@ -77,18 +74,26 @@ local function toggleFrame()
 	te.UI.frame:SetHidden(not te.UI.frame:IsHidden())
 end
 
+local function moduleCheck()
+	if modsChecked then return end
+	modsChecked = true
+	local count = 0
+	for k, v in pairs(te.dataModules) do
+		count = count + 1
+	end
+	if count < 10 then
+		d("[Testify]: |cff0000ERROR:|r there are missing data modules. Do not save or load data without first enabling all required data modules in the addon list")
+		te.UI.displayStatus("|cff0000ERROR:|r there are missing data modules", -1)
+	end
+end
+
 function te.Init(e, addonName)
 	if addonName ~= te.name then return end
 	te.EM:UnregisterForEvent(te.name.."AddonLoad", EVENT_ADD_ON_LOADED)
+	te.EM:RegisterForEvent(te.name.."modCheck", EVENT_PLAYER_ACTIVATED, moduleCheck)
 	te.savedVars = ZO_SavedVars:NewAccountWide("TestifySavedVariables", 1, nil, defaults)
 	te.startManager()
 	te.setupUI()
-	zo_callLater(function()
-		if #te.dataModules < 10 then
-			d("[Testify]: |cff0000ERROR:|r there are missing data modules. Do not save or load data without first enabling all required data modules in the addon list")
-			te.UI.displayStatus("|cff0000ERROR:|r there are missing data modules", -1)
-		end
-	end, 5000)
 	SLASH_COMMANDS["/techatout"] = toggleEvents
 	SLASH_COMMANDS["/tetestdata"] = te.runTestData
 	SLASH_COMMANDS["/terecord"] = chatToggleRecording

@@ -1,7 +1,6 @@
 Testify = Testify or { }
 local te = Testify
 
-
 local strfmt = string.format
 local strsub = string.sub
 local tonumber = tonumber

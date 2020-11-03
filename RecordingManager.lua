@@ -35,7 +35,6 @@ function te.toggleRecording(enable, name)
 	end
 end
 
--- libasync maybe
 function te.saveRecording(recordingName)
 	local start = GetGameTimeMilliseconds()
 	local record = te.recordings[recordingName]

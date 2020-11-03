@@ -9,11 +9,7 @@ local max = math.max
 te.continueReplay = true
 te.scenarioTime = 0
 -- replay frame: [int] = {timestamp, {eventData}}
---te.loadedReplay = { }
 
--- /script Testify.loadRecording('lokke_1')
--- /script Testify.startReplay(Testify.registeredCallbackManagers['GlobalEventManager'], Testify.recordings['lokke_1'], 1)
--- /script Testify.continueReplay = false
 -- scenario replay covered 12461ms (real time 26482ms) -- 1463 frames of lokke_1
 -- scenario replay: 1690 frames covering 13818ms (real time 30210ms) -- all zo_callLater
 -- scenario replay: 1641 frames covering 13266ms (real time 19885ms) -- 0 ms diffs use recursion
@@ -49,8 +45,6 @@ function te.startReplay(manager, replay, startFrame)
 		te.UI.displayStatus("|cff0000Start frame is invalid for this scenario!|r", 2000)
 		return
 	end
-	--te.replayLength = len
-	--te.replayDuration = replay[len][1] - replay[1][1]
 	local function frameLoop()
 		if frame == startFrame then firstFrame = replay[frame][1] end
 		lastFrame = replay[frame][1]
@@ -84,7 +78,7 @@ function te.startReplay(manager, replay, startFrame)
 			local currentTime = GetGameTimeMilliseconds() - te.startTime
 			local desync = te.scenarioTime - currentTime
 			te.UI.replayInfo:SetText(string.format(te.replayStatusTemplate, te.replayLength, te.replayDuration, desync, te.scenarioTime, currentTime, te.frameNum))
-			df("scenario replay: %s frames covering %dms (real time %dms)", lastFrameNum - startFrame, lastFrame - firstFrame, GetGameTimeMilliseconds() - startTime)
+			--df("scenario replay: %s frames covering %dms (real time %dms)", lastFrameNum - startFrame, lastFrame - firstFrame, GetGameTimeMilliseconds() - startTime)
 		end
 	end
 

@@ -20,9 +20,7 @@ te.replayDuration = 0
 te.startTime = 0
 te.frameNum = 1
 
-te.replayStatusTemplate = "Total frames: %d\nTotal duration: %dms\nCurrent desync: %dms\nScenario time: %dms\nCurrent Time: %dms\nCurrent frame: %d"
-
--- ZO_StatusBar_SmoothTransition(Testify.UI.progressBar, 11, 100, false)
+te.replayStatusTemplate = "Total frames: %d\nTotal duration: %dms\nCurrent desync: %dms\nScenario time: %dms\nCurrent time: %dms\nCurrent frame: %d"
 
 function ui.displayStatus(text, duration)
 	ui.status:SetText(text)
@@ -89,7 +87,6 @@ function ui.refreshTables()
 end
 
 local function startRecordingHandler()
-	--d("start recording")
 	if not te.currentRecordName or te.currentRecordName == "" then
 		ui.displayStatus("|cff0000Please enter a name for the recording|r", 2000)
 		return
@@ -101,7 +98,6 @@ local function startRecordingHandler()
 end
 
 local function stopRecordingHandler()
-	--d("stop recording")
 	te.toggleRecording("false")
 	ui.recordingStatus:SetText("Recording: |cff0000Off|r")
 	ui.recordingName:SetEditEnabled(true)
@@ -120,18 +116,15 @@ local function stopRecordingHandler()
 end
 
 local function recordingNameHandler(control)
-	--d(control:GetText())
 	te.currentRecordName = control:GetText()
 end
 
 local function manageLoadedSaveHandler()
-	d("loaded save")
 	ui.displayStatus("Saving, please wait...", -1)
 	te.saveRecording(te.selectedLoadedName)
 end
 
 local function manageLoadedDeleteHandler()
-	d("loaded delete")
 	if te.selectedLoadedName == "" then
 		ui.displayStatus("|cff0000Please select a loaded scenario to delete|r", 2000)
 		return
@@ -141,7 +134,6 @@ local function manageLoadedDeleteHandler()
 end
 
 local function manageSavedLoadHandler()
-	d("saved load")
 	if te.selectedSavedName == "" then
 		ui.displayStatus("|cff0000Please select a saved scenario to load|r", 2000)
 		return
@@ -151,7 +143,6 @@ local function manageSavedLoadHandler()
 end
 
 local function manageSavedDeleteHandler()
-	d("saved delete")
 	if te.selectedSavedName == "" then
 		ui.displayStatus("|cff0000Please select a saved scenario to delete|r", 2000)
 		return
@@ -161,7 +152,6 @@ local function manageSavedDeleteHandler()
 end
 
 local function startReplayHandler()
-	d("start replay")
 	if te.selectedReplayName == "" or te.selectedManager == "" then
 		ui.displayStatus("|cff0000Please select a scenario and a manager|r", 2000)
 		return
@@ -170,15 +160,16 @@ local function startReplayHandler()
 end
 
 local function stopReplayHandler()
-	d("stop replay")
 	te.continueReplay = false
 end
 
 local function startFrameHandler(control)
-	d(control:GetText())
 	te.replayStartFrame = true and tonumber(control:GetText()) or 1
 	if te.selectedReplayName ~= "" then
 		ZO_StatusBar_SmoothTransition(ui.progressBar, te.replayStartFrame, te.replayLength, false)
+	end
+	if te.replayStartFrame < 1 then
+		control:SetText(1)
 	end
 end
 
@@ -202,8 +193,6 @@ function te.setupUI()
 	ui.progressBar = Testify_Frame_Replay_Progress_Bar
 
 	ui.recordingInfo:SetText("")
-	--ui.startFrame:SetEditEnabled(false)
-	--ui.startFrame:SetMouseEnabled(false)
 	
 	ui.manageLoadedDropdown = ZO_ComboBox_ObjectFromContainer(Testify_Frame_Scenarios_Right_Management_Left_Mem_Dropdown)
 	ui.manageLoadedDropdown:SetSelectedItemText("Select Scenario")

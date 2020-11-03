@@ -3,6 +3,6 @@
 ## Description: Database 09 submodule for saved Testify logs
 ## DependsOn: Testify
 ## ValidateSavedVariables: 1
-## APIVersion: 100032
+## APIVersion: 100033
 ## SavedVariables: TestifyDB09SavedVars
 ## DisabledSavedVariablesAutoSaving: 1
