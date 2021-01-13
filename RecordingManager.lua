@@ -27,11 +27,14 @@ function te.toggleRecording(enable, name)
 		te.EM:RegisterForEvent(te.name.."RecordingManager", EVENT_PLAYER_COMBAT_STATE, te.addRecordEntry)
 		te.EM:RegisterForEvent(te.name.."RecordingManager", EVENT_EFFECT_CHANGED, te.addRecordEntry)
 		te.EM:AddFilterForEvent(te.name.."RecordingManager", EVENT_EFFECT_CHANGED, REGISTER_FILTER_SOURCE_COMBAT_UNIT_TYPE, COMBAT_UNIT_TYPE_NONE)
+
+		te.EM:RegisterForEvent(te.name.."RecordingManager", EVENT_CHAT_MESSAGE_CHANNEL, te.addRecordEntry)
 	else
 		df("[Testify] Recording |cFF0000Disabled|r")
 		te.EM:UnregisterForEvent(te.name.."RecordingManager", EVENT_COMBAT_EVENT)
 		te.EM:UnregisterForEvent(te.name.."RecordingManager", EVENT_PLAYER_COMBAT_STATE)
 		te.EM:UnregisterForEvent(te.name.."RecordingManager", EVENT_EFFECT_CHANGED)
+		te.EM:UnregisterForEvent(te.name.."RecordingManager", EVENT_CHAT_MESSAGE_CHANNEL)
 	end
 end
 

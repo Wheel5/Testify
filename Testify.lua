@@ -2,7 +2,7 @@ Testify = Testify or { }
 local te = Testify
 
 te.name = "Testify"
-te.version = "1.0"
+te.version = "1.1"
 
 te.testReplay_01 = {
 	[1] = {1000, {131106, 2250, nil, "Ranger", 0, 0, nil, 0, "My Slap on One^Fx", 1, 0, -1, 1, nil, 0, 48207, 45493, 0}},

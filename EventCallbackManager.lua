@@ -24,7 +24,7 @@ local eventFilterLookup = {
 			return abilityId == select(16, ...)
 		end,
 		[REGISTER_FILTER_UNIT_TAG] = function(unitTag, ...)
-			return string.find(select(5, ...), unitTag) ~= nil
+			return select(5, ...) == unitTag
 		end,
 		[REGISTER_FILTER_UNIT_TAG_PREFIX] = function(unitTag, ...)
 			return string.find(select(5, ...), unitTag) ~= nil

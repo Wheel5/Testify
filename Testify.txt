@@ -1,7 +1,7 @@
 ## Title: |c9dfc03Testify|r
 ## Description: Event replay engine for automated testing
 ## Author: |cc2ff19Wheels|r
-## Version: 1.0
+## Version: 1.1
 ## APIVersion: 100033
 ## SavedVariables: TestifySavedVariables
 ## DependsOn: LibAddonMenu-2.0 LibAsync
